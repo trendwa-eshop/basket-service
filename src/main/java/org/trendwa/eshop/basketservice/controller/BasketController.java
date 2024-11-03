@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.trendwa.eshop.basketservice.model.CustomerBasket;
 import org.trendwa.eshop.basketservice.service.BasketService;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/basket")
 @RequiredArgsConstructor
@@ -17,8 +15,7 @@ public class BasketController {
 
     @GetMapping("/{buyerId}")
     public ResponseEntity<CustomerBasket> getBasketByBuyerId(@PathVariable String buyerId) {
-        Optional<CustomerBasket> basket = basketService.getBasketByBuyerId(buyerId);
-        return basket.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(basketService.getBasketByBuyerId(buyerId));
     }
 
     @PostMapping
