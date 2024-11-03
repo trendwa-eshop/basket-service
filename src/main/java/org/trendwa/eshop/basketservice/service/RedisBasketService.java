@@ -31,6 +31,6 @@ public class RedisBasketService implements BasketService {
     @Override
     public void deleteBasketByBuyerId(String buyerId) {
         if(basketRepository.existsById(buyerId)) basketRepository.deleteById(buyerId);
-        throw new CustomerBasketNotFoundException(buyerId);
+        else throw new CustomerBasketNotFoundException(buyerId);
     }
 }
