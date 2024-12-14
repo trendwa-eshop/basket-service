@@ -1,19 +1,21 @@
 package org.trendwa.eshop.basketservice.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.trendwa.eshop.basketservice.exception.CustomerBasketNotFoundException;
 import org.trendwa.eshop.basketservice.model.CustomerBasket;
 import org.trendwa.eshop.basketservice.repository.BasketRepository;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class RedisBasketServiceTest {
 
     @Mock
@@ -22,10 +24,6 @@ class RedisBasketServiceTest {
     @InjectMocks
     private RedisBasketService redisBasketService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void testGetBasketByBuyerId_BasketExists() throws CustomerBasketNotFoundException {
